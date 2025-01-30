@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "./config/axios";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -72,12 +73,14 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Add your dashboard features here */}
         <div className="dashboard-cards">
           <div className="card">
             <h3>Profile Status</h3>
             <p>Active</p>
           </div>
+          <Link to="/courses">
+            <button>Register Courses</button>
+          </Link>
           <div className="card">
             <h3>Last Login</h3>
             <p>{new Date().toLocaleDateString()}</p>

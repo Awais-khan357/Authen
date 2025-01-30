@@ -2,27 +2,24 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const courseRoute = require("./routes/courseRoute");
 require("dotenv").config();
 
 const app = express();
 
-// Connect to database
 connectDB();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Add logging middleware
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
 
-// Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/courses", courseRoute);
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
